@@ -93,4 +93,4 @@ urlpatterns = [
   - `cd /vagrant/mysite`
   - `source ../ENV/bin/activate`
   - `python manage.py runserver 0:8000`
-- [localhost:8000](http://localhost:8000/)
+- [localhost:8000/polls](http://localhost:8000/polls)
