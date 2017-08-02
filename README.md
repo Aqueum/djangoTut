@@ -86,9 +86,11 @@ urlpatterns = [
 
 # To launch
 - in terminal `djangoTut` or navigate to the folder with your vm
-- `vagrant up`
-- `vagrant ssh`
-- `cd /vagrant/mysite`
-- `source ../ENV/bin/activate`
-- `python manage.py runserver 0:8000`
+- `./rds1` (a bash script I set up to do the following)
+  - `vagrant up`
+  - `vagrant ssh`
+- `/vagrant/rds2` (a bash script I set up to do the following)
+  - `cd /vagrant/mysite`
+  - `source ../ENV/bin/activate`
+  - `python manage.py runserver 0:8000`
 - [localhost:8000](http://localhost:8000/)
