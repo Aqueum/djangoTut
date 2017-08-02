@@ -1,0 +1,15 @@
+# Admin files
+.vagrant/
+.idea/
+*console.log
+.DS_Store
+ENV/
+
+# Python bite code
+*.pyc
+
+# Database binary
+*.sqlite3
+
+# Legacy files
+/mysiteroot-April17
