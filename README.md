@@ -48,19 +48,33 @@
 
 ## Add a view
 - edit polls/views.py to: 
-`from django.http import HttpResponse
+```
+from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")`
-- add new polls/urls.py with content: `from django.conf.urls import url
+    return HttpResponse("Hello, world. You're at the polls index.")
+```
+- add new polls/urls.py with content: 
+```
+from django.conf.urls import url
 
 from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-]`  
-- add url pattern `url(r'^polls/', include('polls.urls')),` and `from django.conf.urls import include` to mysite/urls.py
+]
+```  
+- add url pattern `url(r'^polls/', include('polls.urls')),` and `from django.conf.urls import include` to mysite/urls.py so we have:
+```
+from django.conf.urls import include, url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^polls/', include('polls.urls')),
+    url(r'^admin/', admin.site.urls),
+]
+```
 - check it works:
   - `python manage.py runserver 0:8000`
   - browse `http://127.0.0.1:8000/polls/`
