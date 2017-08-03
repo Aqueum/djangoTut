@@ -47,7 +47,7 @@
 - `python manage.py startapp polls` to create polls app starter
 
 ## Add a view
-- edit polls/views.py to: 
+- edit `polls/views.py` to: 
 ```
 from django.http import HttpResponse
 
@@ -83,7 +83,25 @@ urlpatterns = [
 ## Set up database
 - If not SQLite see [databases](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-DATABASES), ensure database set up with `CREATE DATABASE database_name;` in database interactive prompt, and that the user given to `mysite/settings.py` has create database privelages.
 - change `mysite/settings.py` to have `LANGUAGE_CODE = 'en-gb'` and `TIME_ZONE = 'Europe/London'`
+- in terminal `cd /vagrant/mysite` & `source ../ENV/bin/activate`
+- `python manage.py migrate` to create tables for INSTALLED_APPS
 
+## Create models
+- Edit `polls/models.py` to:
+```
+from django.db import models
+
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+```
 
 
 # To launch
