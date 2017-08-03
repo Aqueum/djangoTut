@@ -127,6 +127,33 @@ class Choice(models.Model):
 - `q.question_text = "What's up?"` change question
 - `q.save()` to save question
 - `Question.objects.all()` to get all questions
+- `Question.objects.filter(id=1)` or `Question.objects.get(pk=1)` to get first question
+- `Question.objects.filter(question_text__startswith='What')` to filter by start text
+- `from django.utils import timezone`
+- `current_year = timezone.now().year`
+- `Question.objects.get(pub_date__year=current_year)` to get this year's questions
+- `q = Question.objects.get(pk=1)`
+- `q.choice_set.all()` display choices (none to date)
+- `q.choice_set.create(choice_text='Not much', votes=0)` create a choice
+- `q.choice_set.create(choice_text='The sky', votes=0)` create another choice
+- `c = q.choice_set.create(choice_text='Just hacking again', votes=0)`
+- `c.question` show choice objects have access to related question objects
+- `q.choice_set.all()` and vice versa
+- `q.choice_set.count()` to get number of choices (currently 3)
+- `Choice.objects.filter(question__pub_date__year=current_year)` use __ to separate relationships
+- `c = q.choice_set.filter(choice_text__startswith='Just hacking')`
+- `c.delete()` to dete a choice
+- see [Accessing related objects](https://docs.djangoproject.com/en/1.11/ref/models/relations/), [Field lookups](https://docs.djangoproject.com/en/1.11/topics/db/queries/#field-lookups-intro) & [Database API reference](https://docs.djangoproject.com/en/1.11/topics/db/queries/)
+
+## Create Admin User & log in
+- `python manage.py createsuperuser`
+- enter username, email address & passwordx2 (see password manager 'django scratch')
+- `python manage.py runserver 0:8000` to run server
+- [localhost:8000/admin](http://localhost:8000/admin)
+- & log in with previously saved credentials
+
+
+
 
 
 
