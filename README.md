@@ -203,7 +203,7 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 ]
 ```
-### Add template
+### Add templates
 - create file `/polls/templates/polls/index.html` with content:
 ```
 {% if latest_question_list %}
@@ -216,10 +216,19 @@ urlpatterns = [
 <p>No polls are available.</p>
 {% endif %}
 ```
+- create file `/polls/templates/polls/detail.html` with content:
+```
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+```
 - update `polls/views.py` to:
 ```
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import Question
 
@@ -231,7 +240,8 @@ def index(request):
 
 
 def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
 
 
 def results(request, question_id):
