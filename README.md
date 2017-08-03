@@ -103,6 +103,15 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 ```
 
+## Activate models
+- add `'polls.apps.PollsConfig',` to top of `INSTALLED_APPS`. list in `mysite/settings.py`
+- `python manage.py makemigrations polls` to create migrations for model changes
+- optional `python manage.py sqlmigrate polls 0001` to see what SQL Django thinks is needed
+- optional `python manage.py check` to check for project problems
+- `python manage.py migrate` to create model tables in database
+
+
+
 
 # To launch
 - in terminal `djangoTut` or navigate to the folder with your vm
