@@ -80,7 +80,9 @@ urlpatterns = [
   - browse `http://127.0.0.1:8000/polls/`
 - url() takes for arguments: regex, view, kwargs & name - see [docs](https://docs.djangoproject.com/en/1.11/ref/urls/#url) and foot of [tutorial page](https://docs.djangoproject.com/en/1.11/intro/tutorial01/)
 
-
+## Set up database
+- If not SQLite see [databases](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-DATABASES), ensure database set up with `CREATE DATABASE database_name;` in database interactive prompt, and that the user given to `mysite/settings.py` has create database privelages.
+- change `mysite/settings.py` to have `LANGUAGE_CODE = 'en-gb'` and `TIME_ZONE = 'Europe/London'`
 
 
 
