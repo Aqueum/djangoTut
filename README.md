@@ -110,6 +110,19 @@ class Choice(models.Model):
 - optional `python manage.py check` to check for project problems
 - `python manage.py migrate` to create model tables in database
 
+## - Optional, play with API
+- `python manage.py shell` to invoke Python shell with env variable & import bath
+- `from polls.models import Question, Choice` to import model classes
+- `Question.objects.all()` to check no questions
+- `from django.utils import timezone`
+- `q = Question(question_text="What's new?", pub_date=timezone.now())` to create new question
+- `q.save()` to save question
+- `q.id` to get question ID (1 in this case)
+- `q.question_text` to get question text ("What's new?" in this case)
+- `q.pub_date` to get question timestamp (datetime.datetime(2017, 8, 3, 10, 18, 23, 238260, tzinfo=<UTC>) in this case)
+- `q.question_text = "What's up?"` change question
+- `q.save()` to save question
+- `Question.objects.all()` to get all questions
 
 
 
