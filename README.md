@@ -151,7 +151,14 @@ class Choice(models.Model):
 - `python manage.py runserver 0:8000` to run server
 - [localhost:8000/admin](http://localhost:8000/admin)
 - & log in with previously saved credentials
+- edit `polls/admin.py` to:
+```
+from django.contrib import admin
 
+from .models import Question
+
+admin.site.register(Question)
+```
 
 
 
