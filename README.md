@@ -377,7 +377,7 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 ```
-leaving def vote as previous
+leaving `def vote`... as previous
 
 
 
