@@ -373,14 +373,46 @@ class DetailView(generic.DetailView):
     template_name = 'polls/detail.html'
 
 
-class ResultsView(generic.DetailView):
+class ResultsView(generic.DetailView):/
     model = Question
     template_name = 'polls/results.html'
 ```
 leaving `def vote`... as previous
 
+## Testing
+- add bug to `polls/models.py` with:
+```
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+```
+- add test code to `polls/tests.py`:
+```
+import datetime
+
+from django.utils import timezone
+from django.test import TestCase
+
+from .models import Question
 
 
+class QuestionModelTests(TestCase):
+
+    def test_was_published_recently_with_future_question(self):
+        """
+        was_published_recently() returns False for questions whose pub_date
+        is in the future.
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        future_question = Question(pub_date=time)
+        self.assertIs(future_question.was_published_recently(), False)
+```
+- run test code with `python manage.py test polls`
+- fix bug in `polls/models.py` with:
+```
+def was_published_recently(self):
+    now = timezone.now()
+    return now - datetime.timedelta(days=1) <= self.pub_date <= now
+```
 
 
 # To launch
