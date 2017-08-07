@@ -714,6 +714,8 @@ recursive-include docs *
 ## Install as user library
 - cd /vagrant
 - `pip install --user django-polls/dist/django-polls-0.1.tar.gz` is what they say, but in a virtual env I could only manage `pip install django-polls/dist/django-polls-0.1.tar.gz`
+- I don't know why the above failed and don't have time now to investigate, so I just copied polls back in to the base mysite
+
 
 # To launch
 - in terminal `djangoTut` or navigate to the folder with your vm
