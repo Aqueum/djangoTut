@@ -571,7 +571,7 @@ body {
 }
 ```
 
-## Customise admin
+## Customise admin functionality
 - change `polls/admin.py` to:
 ```
 from django.contrib import admin
@@ -595,7 +595,20 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 ```
+- add questions list columns to `polls/admin.py`:
+```
+    list_display = ('question_text', 'pub_date', 'was_published_recently')
 
+```
+- expand was_published_recently in `polls/models.py`:
+```
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'Published recently?'
+```
 
 
 # To launch
