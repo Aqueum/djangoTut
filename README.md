@@ -610,6 +610,9 @@ admin.site.register(Question, QuestionAdmin)
     was_published_recently.short_description = 'Published recently?'
 ```
 -  add `list_filter = ['pub_date']` to `polls/admin.py`'s QuestionAdmin class to give filter sidebar
+-  add `search_fields = ['question_text']` to `polls/admin.py`'s QuestionAdmin class to give search box
+
+
 
 # To launch
 - in terminal `djangoTut` or navigate to the folder with your vm
