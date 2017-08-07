@@ -548,6 +548,20 @@ class QuestionDetailViewTests(TestCase):
         self.assertContains(response, past_question.question_text)
 ```
 
+## Look and feel
+- add directory `polls/static/polls`
+- add file `styles.css` with content:
+```
+li a {
+    color: green;
+}
+```
+- add link in `polls/templates/polls/index.html`:
+```
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+```
 
 
 
