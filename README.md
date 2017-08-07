@@ -625,6 +625,95 @@ admin.site.register(Question, QuestionAdmin)
 {% endblock %}
 ```
 
+## Package for reuse
+- check [pip](https://pypi.python.org/pypi/pip) & [setuptools](https://pypi.python.org/pypi/setuptools) installed
+- move `polls` to new dir `django-polls`
+- add `django-polls/README.rst` with content:
+```
+=====
+Polls
+=====
+
+Polls is a simple Django app to conduct Web-based polls. For each
+question, visitors can choose between a fixed number of answers.
+
+Detailed documentation is in the "docs" directory.
+
+Quick start
+-----------
+
+1. Add "polls" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...
+        'polls',
+    ]
+
+2. Include the polls URLconf in your project urls.py like this::
+
+    url(r'^polls/', include('polls.urls')),
+
+3. Run `python manage.py migrate` to create the polls models.
+
+4. Start the development server and visit http://127.0.0.1:8000/admin/
+   to create a poll (you'll need the Admin app enabled).
+
+5. Visit http://127.0.0.1:8000/polls/ to participate in the poll.
+```
+- Add `django-polls/LICENSE` file
+- Add `django-polls/setup.py` file with content:
+```
+import os
+from setuptools import find_packages, setup
+
+with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
+    README = readme.read()
+
+# allow setup.py to be run from any path
+os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+
+setup(
+    name='django-polls',
+    version='0.1',
+    packages=find_packages(),
+    include_package_data=True,
+    license='BSD License',  # example license
+    description='A simple Django app to conduct Web-based polls.',
+    long_description=README,
+    url='https://www.example.com/',
+    author='Your Name',
+    author_email='yourname@example.com',
+    classifiers=[
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Framework :: Django :: X.Y',  # replace "X.Y" as appropriate
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',  # example license
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        # Replace these appropriately if you are stuck on Python 2.
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    ],
+)
+```
+- Add `django-polls/MANIFEST.in` which includes all non python module & package files:
+```
+include LICENSE
+include README.rst
+recursive-include polls/static *
+recursive-include polls/templates *
+recursive-include docs *
+``` 
+- Add documentation folder `django-polls/docs` and populate
+- navigate to within `django-polls` and run `python setup.py sdist`
+
+## Install as user library
+- cd /vagrant
+- `pip install --user django-polls/dist/django-polls-0.1.tar.gz` is what they say, but in a virtual env I could only manage `pip install django-polls/dist/django-polls-0.1.tar.gz`
 
 # To launch
 - in terminal `djangoTut` or navigate to the folder with your vm

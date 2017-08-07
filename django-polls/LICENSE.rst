@@ -1,0 +1,1 @@
+This doesn't yet have a license, so lets assume all rights resevred for now.  Of course any material from djangoproject.com is licenced by its creator under their own terms (possibly BSD?).
