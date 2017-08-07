@@ -612,6 +612,18 @@ admin.site.register(Question, QuestionAdmin)
 -  add `list_filter = ['pub_date']` to `polls/admin.py`'s QuestionAdmin class to give filter sidebar
 -  add `search_fields = ['question_text']` to `polls/admin.py`'s QuestionAdmin class to give search box
 
+## Customise admin appearance
+- note we'd normally use [django.contrib.admin.AdminSite.site_header](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.AdminSite.site_header) rather than overriding the template
+- add `mysite/templates/admin` (top level mysite - containing manage.py)
+- edit `DIRS` in `mysite/mysite/settings.py` to `'DIRS': [os.path.join(BASE_DIR, 'templates')],`
+- add `/Users/Shared/Dropbox/P - Education/Martin - Education/Programming/djangoTut/ENV/lib/python3.5/site-packages/django/contrib/admin/templates/admin/base_site.html` to `mysite/templates/admin`
+- edit `base_site.html` to:
+```
+{% extends "admin/base.html" %} {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock%}
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Polls Administration</a></h1>
+{% endblock %}
+```
 
 
 # To launch
