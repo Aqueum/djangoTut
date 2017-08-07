@@ -562,6 +562,15 @@ li a {
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 ```
+- add directory `polls/static/polls/images`
+- add file `python.gif`
+- add block to `style.css`:
+```
+body {
+  background: white url("images/python.gif") no-repeat right bottom;
+}
+```
+
 
 
 
