@@ -580,9 +580,9 @@ from .models import Question
 from .models import Choice
 
 
-class ChoiceInline(admin.StackedInline):
+class ChoiceInline(admin.TabularInline):
     model = Choice
-    extra = 3
+    extra = 0
 
 
 class QuestionAdmin(admin.ModelAdmin):
